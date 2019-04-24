@@ -1,0 +1,24 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+<script src="http://fb.me/react-with-addons-0.11.0.js"></script>
+<script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+
+<div id="ReactBasementRoot"></div>
+
+<script type="text/jsx;harmony=true">/** @jsx React.DOM */
+
+var ReactBasement = React.createClass({
+  render(){
+    return (
+      <div>
+        Hello World
+      </div>
+    );
+  },
+});
+
+React.renderComponent(
+  <ReactBasement />,
+  document.getElementById('ReactBasementRoot')
+);
+
+</script>
