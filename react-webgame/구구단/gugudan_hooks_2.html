@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>GuguDan Hooks</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const GuguDan = ()=>{
+  const inputRef = React.useRef(null);
+  const [state, setState] = React.useState({
+    first:Math.ceil(Math.random() * 9),
+    second:Math.ceil(Math.random() * 9),
+    value:'',
+    result:'',
+  });
+  
+  const onSubmitForm = (e)=>{
+    e.preventDefault();
+    if (parseInt(state.value)===state.first*state.second) {
+      setState({
+        result:'정답',
+        first:Math.ceil(Math.random() * 9),
+        second:Math.ceil(Math.random() * 9),
+        value:'',
+      });
+      inputRef.current.focus();
+    }else{
+      setState({
+        result:'땡',
+        value:'',
+      });
+      inputRef.current.focus();
+    }
+  };
+  
+  const onChangeInput = (e)=>{
+    setState({
+      value:'',
+    });
+  };
+
+  console.log('렌더링');
+  return (
+    <React.Fragment>
+      <div>{state.first} 곱하기 {state.second}는?</div>
+        <form onSubmit={onSubmitForm}>
+          <input ref={inputRef} onChange={onChangeInput} value={state.value}/>
+          <button>입력</button>
+        </form>
+        <div id="result">{state.result}</div>
+    </React.Fragment>
+  );
+}
+</script>
+
+<script type="text/babel">
+ReactDOM.render(<GuguDan />, document.querySelector('#root'));
+</script>
+</body>
+</html>

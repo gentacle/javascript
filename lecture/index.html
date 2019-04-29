@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -8,34 +7,19 @@
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-  <title>GuguDan</title>
+  <title>HooksIndex</title>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const e = React.createElement;
+<div id="root"></div>
+<script type='text/babel'>
 
-      class LikeButton extends React.Component{
-        constructor(props){
-          super(props);
-          this.state = {
-            liked: false,
-          };
-        }
-
-        render(){
-          return(
-          <button type="submit"
-           onClick = {()=>{this.setState({ liked: true })}}>
-           {this.state.liked === true ? 'Liked' : 'Like'}
-         </button>
-       )
-     }
+const HooksIndex = ()=>{
+  return <div>Hello hooks! 함수형 안에서도 setState나 Ref를 사용하고싶다! => Hooks</div>;
 }
-      </script>
+</script>
 
-      <script type="text/babel">
-      ReactDOM.render(<LikeButton />, document.querySelector('#root'));
-    </script>
-  </body>
+<script type="text/babel">
+  ReactDOM.render(<HooksIndex />, document.querySelector('#root'));
+</script>
+</body>
 </html>
