@@ -24,11 +24,13 @@
         onSubmit = (e)=>{
                 e.preventDefault();
                 if (parseInt(this.state.value)===this.state.firstNumber*this.state.secondNumber) {
-                  this.setState({
-                    result: this.state.firstNumber +'X'+ this.state.secondNumber +'='+ this.state.value + ' 정답',
-                    firstNumber:Math.ceil(Math.random() * 9),
-                    secondNumber:Math.ceil(Math.random() * 9),
-                    value:'',
+                  this.setState((prevState)=>{
+                    return{
+                      result: prevState.firstNumber +'X'+ prevState.secondNumber +'='+ prevState.value + ' 정답',
+                      firstNumber:Math.ceil(Math.random() * 9),
+                      secondNumber:Math.ceil(Math.random() * 9),
+                      value:'',
+                    }
                   });
                 }else{
                   this.setState({
