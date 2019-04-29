@@ -32,11 +32,13 @@
                       value:'',
                     }
                   });
+                  this.input.focus();
                 }else{
                   this.setState({
                     result:'땡',
                     value:'',
                   });
+                  this.input.focus();
                 }
               };
 
@@ -44,12 +46,14 @@
           this.setState({value: e.target.value});
         };
 
+        input;
+
         render(){
           return(
             <React.Fragment>
               <div>{this.state.firstNumber} 곱하기 {this.state.secondNumber}는?</div>
               <form onSubmit={this.onSubmit}>
-                <input type="number" value={this.state.value}
+                <input ref={(c)=>{this.input = c;}} type="number" value={this.state.value}
                   onChange={this.onChange} />
                 <button>입력</button>
               </form>      
