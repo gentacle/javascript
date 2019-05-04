@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -22,7 +23,7 @@ module.exports = {
                             browsers:[
                                 'last 2 chrome versions',
                                 '>5% in KR' 
-                            ],
+                            ],//browserslist
                         },
                         debug:true,
                     }],
@@ -32,6 +33,9 @@ module.exports = {
             },
         }],
     },
+    plugins:[
+        new webpack.LoaderOptionsPlugin({debug:true}),
+    ],
     output:{
         filename: 'app.js',
         path: path.join(__dirname,'dist'),
