@@ -29,7 +29,6 @@ module.exports={
                 plugins:[
                     '@babel/plugin-proposal-class-properties',
                     'react-hot-loader/babel'
-                
                 ],
             },
         }],
@@ -39,7 +38,8 @@ module.exports={
 
     output:{
         path: path.join(__dirname, 'dist'), //C:\workspace\javascript\lecture\dist
-        filename: 'app.js'
+        filename: 'app.js',
+        publicPath: '/dist/',
     },//출력
 
 };
