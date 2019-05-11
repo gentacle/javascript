@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 
 class Try extends Component{
   render(){
-    const tryInfo = this.props.tryInfo;
+    // const tryInfo = this.props.tryInfo;
+    const {tryInfo} = this.props;
     return(
       <li>
         <div> {tryInfo.try} </div>
@@ -11,7 +12,5 @@ class Try extends Component{
     )
   }
 }
-                
-
 
 export default Try;
