@@ -2,8 +2,14 @@ import React,{Component} from 'react';
 import Try from './Try'
 
 
-function getNumbers(){
-//별개의 숫자 4개 출력
+function getNumbers(){//별개의 숫자 4개 출력
+  const candidate = [1,2,3,4,5,6,7,8,9];
+  const array = [];
+  for(let i = 0;i<4;i +=1){
+    const chosen = candidate.splice(Math.floor(Math.random() * (9-i)), 1)[0];
+    array.push(chosen);
+  }
+  return array;
 
 };
 
@@ -17,7 +23,12 @@ class NumberBaseball extends Component{
   
   onSubmitForm = (e)=>{
     e.preventDefault();
-    console.log(this.state.value);
+    if(this.state.value === this.state.answer.join('')){
+
+    }
+
+
+    
   };
 
   onChangeInput = (e)=>{
