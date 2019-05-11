@@ -24,27 +24,51 @@ class NumberBaseball extends Component{
   onSubmitForm = (e)=>{
     e.preventDefault();
     if(this.state.value === this.state.answer.join('')){
-
+      this.setState({
+        result: '홈런',
+        tries:[...this.state.tries, {try: this.state.value, result: '홈런!'}],
+      });
+      alert('홈런!');
+      this.setState({
+        value: '',
+        answer: getNumbers(),
+        tries:[],
+      });
+    }else{ //틀린경우 -> 스트라이크 볼 카운트(10회까지)
+      const answerArray = this.state.value.split('').map( (v)=>parseInt(v) );
+      let strike = 0;
+      let ball = 0;
+      if(this.state.tries.length >=9){ //10번이상 틀림
+        this.setState({
+          result:`10번 틀려서 실패! 답은 ${this.state.answer.join(',')}`,
+        });
+        alert('리겜');
+        this.setState({
+          value: '',
+          answer: getNumbers(),
+          tries:[],
+        });
+      }else{
+        for(let i = 0; i<4; i += 1){
+          if(answerArray[i] === this.state.answer[i]){
+            strike += 1;
+          }else if(this.state.answer.includes(answerArray[i])){
+            ball +=1;
+          }
+        }
+        this.setState({
+          tries: [ ...this.state.tries, {try:this.state.value, result:`${strike} 스트라이크, ${ball} 볼`}],
+          value: '',
+        });
+      }
     }
-
-
-    
   };
 
   onChangeInput = (e)=>{
-    console.log(this)
     this.setState({
       value: e.target.value,
     });
   };
-
-  fruits = [
-    {fruit:"사과",taste:"맛있다"},
-    {fruit:"바나나",taste:"맛있다"},
-    {fruit:"오렌지",taste:"맛있다"},
-    {fruit:"감",taste:"맛있다"},
-    {fruit:"사과",taste:"맛있다"},
-  ];
 
 
   render(){
@@ -56,9 +80,9 @@ class NumberBaseball extends Component{
         </form>
         <div> 시도:{this.state.tries.length} </div>
         <ul>
-          {this.fruits.map((item,index)=>{
+          {this.state.tries.map((item,index)=>{
             return(
-              <Try key={item.fruit + item.taste + index } item={item} index={index} />
+              <Try key={`${index + 1}차 시도 : `} tryInfo={item} />
             );
           })}
         </ul>
