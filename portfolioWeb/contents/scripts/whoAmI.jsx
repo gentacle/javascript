@@ -3,6 +3,7 @@ const { Component } = React;
 
 class WhoAmI extends Component{
   state = {
+    title:'PortfolioWeb',
     buttonText:'click',
     buttonCheck:true,
   };
@@ -23,19 +24,25 @@ class WhoAmI extends Component{
     console.log('clicked')
   };
   
-  WhoAmI = [{
-    text1: 'Hi! I am gentacle.',
-    text2: 'do you have something to eat?',
-    text3: 'nope?',
-    text4: 'XD',
-  }]
+  Texts = [
+    {text: 'Hi! I am gentacle.'},
+    {text: 'do you have something to eat?'},
+    {text: 'nope?'},
+    {text: 'XD'},
+  ];
 
   render(){
     return(
       <>
       <button onClick={this.handleClick}>{this.state.buttonText}</button>
-      <h1>{this.state.text}</h1>
-      <div></div>
+      <h1>{this.state.title}</h1>
+      <div>
+        {this.Texts.map((v,i)=>{
+          return(
+            <li key={i}>{v.text}</li>
+          )
+        })}
+      </div>
       </>
     )
 
