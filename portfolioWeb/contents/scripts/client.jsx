@@ -1,6 +1,9 @@
 const React = require('react');
-const ReactDom = require('react-dom');
+const ReactDOM = require('react-dom');
+const { hot } = require('react-hot-loader/root');
 
 const WhoAmI =  require('./whoAmI');
 
-ReactDom.render(<WhoAmI />, document.querySelector('#root'));
+const Hot = hot(WhoAmI);
+
+ReactDOM.render(<Hot />, document.querySelector('#root'));
