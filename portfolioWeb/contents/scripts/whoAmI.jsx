@@ -6,6 +6,7 @@ class WhoAmI extends Component{
     title:'PortfolioWeb',
     buttonText:'click',
     buttonCheck:true,
+    todos:[],
   };
 
   handleClick = (e)=>{
@@ -26,15 +27,16 @@ class WhoAmI extends Component{
   
   Texts = [
     {text: 'Hi! I am gentacle.'},
-    {text: 'do you have something to eat?'},
-    {text: 'nope?'},
-    {text: 'XD'},
+    {text: 'The main language is java and reactJS.'},
+    {text: 'It\'s so cool that it works as it was created.'},
+    {text: 'Being a full stack developer. Please support me!'},
   ];
 
   render(){
     return(
       <>
-      <button onClick={this.handleClick}>{this.state.buttonText}</button>
+      <div className="whoami">
+
       <h1>{this.state.title}</h1>
       <div>
         {this.Texts.map((v,i)=>{
@@ -42,6 +44,8 @@ class WhoAmI extends Component{
             <li key={i}>{v.text}</li>
           )
         })}
+      </div>
+      <button onClick={this.handleClick}>{this.state.buttonText}</button>
       </div>
       </>
     )
