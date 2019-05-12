@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React,{ Component, createRef } from 'react';
 import Try from './Try'
 
 
@@ -10,8 +10,8 @@ function getNumbers(){//별개의 숫자 4개 출력
     array.push(chosen);
   }
   return array;
-
 };
+
 
 class NumberBaseball extends Component{
   state={
@@ -37,7 +37,7 @@ class NumberBaseball extends Component{
         answer: getNumbers(),
         tries:[],
       });
-      this.inputRef.focus();
+      this.inputRef.current.focus();
     }else{ //틀린경우 -> 스트라이크 볼 카운트(10회까지)
       const answerArray = value.split('').map( (v)=>parseInt(v) );
       let strike = 0;
@@ -52,7 +52,7 @@ class NumberBaseball extends Component{
           answer: getNumbers(),
           tries:[],
         });
-        this.inputRef.focus();
+        this.inputRef.current.focus();
       }else{
         for(let i = 0; i<4; i += 1){
           if(answerArray[i] === answer[i]){
@@ -67,7 +67,7 @@ class NumberBaseball extends Component{
             value: '',
           };
         });
-        this.inputRef.focus();
+        this.inputRef.current.focus();
       }
     }
   };
@@ -78,12 +78,7 @@ class NumberBaseball extends Component{
     });
   };
 
-  inputRef;
-  
-  onInputRef =(c)=>{
-    console.log('포커스');
-    this.inputRef = c;
-  } 
+  inputRef = createRef(); 
   
   render(){
     const {result, value, tries} = this.state;
@@ -91,7 +86,7 @@ class NumberBaseball extends Component{
       <>
         <h1> {result} </h1>
         <form onSubmit={this.onSubmitForm}>
-          <input type="text" pattern="[1-9]{4}" required ref={this.onInputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
+        <input ref={this.inputRef} type="text" pattern="[1-9]{4}" maxLength={4} value={value} onChange={this.onChangeInput} />
         </form>
         <div> 시도:{tries.length} </div>
         <ul>
