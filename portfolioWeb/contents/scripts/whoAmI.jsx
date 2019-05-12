@@ -1,5 +1,4 @@
-const React = require('react');
-const { Component } = React;
+import React,{ Component } from 'react';
 
 class WhoAmI extends Component{
   state = {
@@ -53,4 +52,4 @@ class WhoAmI extends Component{
   };
 }
 
-module.exports = WhoAmI;
+export default WhoAmI;

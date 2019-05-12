@@ -1,4 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
   name: 'portfolioweb-setting',
@@ -33,12 +35,27 @@ module.exports = {
           'react-hot-loader/babel', //https://github.com/gaearon/react-hot-loader/
         ],
       },
+    },
+    {
+      test: /\.css$/,
+      use: [
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            // only enable hot in development
+            hmr: process.env.NODE_ENV === 'development',
+            // if hmr does not work, this is a forceful method.
+            reloadAll: true,
+          },
+        },
+         'css-loader'],
     }],
   },
 
-  plugins:{
-
-  },
+  plugins: [
+    // 기타 플러그인
+    new MiniCssExtractPlugin({ filename: 'app.css' }),
+  ],
 
   //출력
   output:{
