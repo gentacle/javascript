@@ -1,5 +1,5 @@
-import React,{ useState } from 'react';
-import Try from './Try'
+import React,{ useState , memo} from 'react';
+import Try from './Try';
 
 
 function getNumbers(){//별개의 숫자 4개 출력
@@ -12,11 +12,13 @@ function getNumbers(){//별개의 숫자 4개 출력
   return array;
 };
 
-const NumberBaseball = ()=>{
+const NumberBaseball = memo(()=>{
   const [result, setResult] = useState('');
   const [value, setValue] = useState('');
   const [answer, setAnswer] = useState(getNumbers());
   const [tries, setTries] = useState([]);
+
+  const [titleCount, setTitleCount] = useState(true);
 
   const onSubmitForm = (e)=>{
     e.preventDefault();
@@ -60,9 +62,19 @@ const NumberBaseball = ()=>{
     setValue(e.target.value);
   };
 
+  const componentDidMount = ()=>{
+    if(titleCount){
+      document.title = "111111111111";
+      setTitleCount(false);
+    }else{
+      document.title = "222222222222";
+      setTitleCount(true);
+    }
+  }
 
   return(
     <>
+      <button onClick={componentDidMount}>제목바꾸기</button>
       <h1> {result} </h1>
       <form onSubmit={onSubmitForm}>
         <input maxLength={4} value={value} onChange={onChangeInput} />
@@ -77,6 +89,6 @@ const NumberBaseball = ()=>{
       </ul>
     </>
   );
-};
+});
 
 export default NumberBaseball;
