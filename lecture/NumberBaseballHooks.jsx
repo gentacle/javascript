@@ -55,6 +55,7 @@ const NumberBaseball = memo(()=>{
     }
   };
 
+  
   const onChangeInput = (e)=>{
     setValue(e.target.value);
   };

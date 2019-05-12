@@ -51,11 +51,9 @@ class NumberBaseball extends Component{
           answer: getNumbers(),
           tries:[],
         });
+        this.inputRef.current.focus();
+
       }else{
-        console.log(answer);
-        console.log(value); //입력값
-        console.log(value.split('')); //입력값을 나눔(문자열)
-        console.log(value.split('').map( (v)=>parseInt(v) )); //문자열을 정수화 하고 매핑
         for(let i = 0; i<4; i += 1){
           if(answerArray[i] === answer[i]){
             strike += 1;
@@ -69,6 +67,7 @@ class NumberBaseball extends Component{
             value: '',
           };
         });
+        this.inputRef.current.focus();
       }
     }
   };
