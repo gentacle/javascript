@@ -5,22 +5,19 @@ const todoForm = document.querySelector(".js-todoForm"),
 
 const TODOS_LS = 'todos';
 
-const todos = [];
+let todos = [];
 
-
-
-function filterFn(todo){
-  return todo.id !== 1
-}
 
 function deleteTodo(e){
   const btn = e.target;
   const li = btn.parentNode;
   todoList.removeChild(li);
 
-  const cleanTodos = todos.filter(filterFn);
-  console.log(cleanTodos);
-
+  const cleanTodos = todos.filter((item)=>{
+    return item.id !== parseInt(li.id);
+  });
+  todos = cleanTodos;
+  saveTodos();
 }
 
 
