@@ -9,3 +9,13 @@ h1{
 #title{
   color: rgb(23, 18, 83);
 }
+
+.form,
+.greeting,
+.reset-btn{
+  display: none;
+}
+
+.showing{
+  display: block;
+}
