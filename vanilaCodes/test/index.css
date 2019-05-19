@@ -1,13 +1,26 @@
 body{
-  background-color: #9eb0d1;
-}
-
-h1{
-  color: #c25b3b;
+  background-color: #eee6c0;
 }
 
 #title{
   color: rgb(23, 18, 83);
+}
+
+.js-clock{
+  text-align: center;
+}
+
+.js-clock > .comment{
+  font-size: 0.5rem;
+}
+
+.js-clock > h1{
+  color: #1a1b35;
+}
+
+.greeting-container{
+  height: 5em;
+  text-align: center;
 }
 
 .form,

@@ -51,5 +51,6 @@ function resetUser(){
 
 function init(){
   loadName();
+  resetBtn.addEventListener("click",resetUser)
 };
 init();
