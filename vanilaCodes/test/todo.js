@@ -8,6 +8,27 @@ const TODOS_LS = 'todos';
 const todos = [];
 
 
+
+function filterFn(todo){
+  return todo.id !== 1
+}
+
+function deleteTodo(e){
+  const btn = e.target;
+  const li = btn.parentNode;
+  todoList.removeChild(li);
+
+  const cleanTodos = todos.filter(filterFn);
+  console.log(cleanTodos);
+
+}
+
+
+function saveTodos(){
+  localStorage.setItem(TODOS_LS,JSON.stringify(todos));
+}
+
+
 function paintTodo(text){
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
@@ -15,6 +36,8 @@ function paintTodo(text){
   const newId = todos.length + 1;
 
   delBtn.innerText = "Ω";
+  delBtn.addEventListener("click",deleteTodo);
+
   span.innerText = text;
   li.appendChild(delBtn);
   li.appendChild(span);
@@ -26,6 +49,7 @@ function paintTodo(text){
     id: newId
   };
   todos.push(todoObj);
+  saveTodos();
 }
 
 function handleSubmit(e){
@@ -43,19 +67,19 @@ function handleSubmit(e){
 //있던 없던 항상 출력한다.
 
 // @todo 이름 입력 안되있으면 보이지않게 해야함.
-//이름 삭제버튼 누그고 다시 입력하면 submit 안되는 버그있음
 
 function loadTodos(){
-  if(true){
-    const todos = localStorage.getItem(TODOS_LS);
+    const loadedTodos = localStorage.getItem(TODOS_LS);
     todoForm.addEventListener("submit",handleSubmit);
-    if(todos === !null){
-      
+
+    if(loadedTodos !== null){
+      const parsedTodos = JSON.parse(loadedTodos);
+      parsedTodos.forEach(item => {
+        paintTodo(item.text)
+      });
     }else{
       //없으면 ? 할게 없다.
-    };
-  }else{
-  }
+    };  
 }
 
 
