@@ -8,6 +8,7 @@ function getTime() {
   clockTag.innerText = `${getHour}:${getMinute}:${getSecond}`;
 }
 
+//시간이 0~9일때 십의자리에 0을 추가.
 function addPadLeft(value) {
   return value < 10 ? "0" + value : value;
 }
